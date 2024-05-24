@@ -14,5 +14,3 @@ const sequelize = new Sequelize(
 );
 
 module.exports = sequelize;
-
-// Imsonia passphrase: #4SKKj2Hh-+ff*B
