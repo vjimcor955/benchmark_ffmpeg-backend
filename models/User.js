@@ -2,6 +2,7 @@
 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const bcrypt = require('bcryptjs');
 
 const User = sequelize.define('user', {
   id: {
@@ -22,11 +23,22 @@ const User = sequelize.define('user', {
     allowNull: false
   },
   password: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.STRING(80),
     allowNull: false
   }
 }, {
-  tableName: 'user'
+  tableName: 'user',
+  hooks: {
+    beforeCreate: async (user) => {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(user.password, salt);
+      console.log('Hashed Password Length:', user.password.length); // Log length
+    }
+  }
 });
+
+User.prototype.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports = User;
