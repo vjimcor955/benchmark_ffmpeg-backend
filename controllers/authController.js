@@ -18,7 +18,7 @@ exports.createUser = async (req, res) => {
 
     const userExists = await User.findOne({ where: { email } });
     if (userExists) {
-      return res.status(400).json({ message: 'Email already in use.' });
+      return res.status(201).json({ message: 'Email already in use.' });
     }
 
     const newUser = await User.create({ name, user, email, password });
@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
     res.status(201).json({
       id: newUser.id,
       name: newUser.name,
-      username: newUser.user,
+      user: newUser.user,
       email: newUser.email,
       password: newUser.password,
       token: newToken.token
@@ -48,7 +48,7 @@ exports.authUser = async (req, res) => {
     res.json({
       id: user.id,
       name: user.name,
-      username: user.username,
+      user: user.user,
       email: user.email,
       token: token.token
     });
