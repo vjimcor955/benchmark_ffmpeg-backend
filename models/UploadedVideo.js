@@ -9,12 +9,16 @@ const UploadedVideo = sequelize.define('uploadedVideo', {
     autoIncrement: true,
     primaryKey: true
   },
-  // video: {
-  //   type: DataTypes.BLOB('long'),
-  //   allowNull: false
-  // },
-  path: {
-    type: DataTypes.STRING(255),
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  size: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  type: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   user_id: {
