@@ -14,7 +14,7 @@ const ResultVideo = sequelize.define('resultVideo', {
     allowNull: false
   },
   size: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   codec: {
