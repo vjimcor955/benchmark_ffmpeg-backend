@@ -22,6 +22,17 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+// Update user
+exports.modifyUser = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user.update(req.body);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Delete user
 exports.deleteUser = async (req, res) => {
   try {

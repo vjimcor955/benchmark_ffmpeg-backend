@@ -32,6 +32,7 @@ router.post('/login', authController.authUser);
 
 router.get('/', protect, userController.getAllUsers);
 router.get('/:id', protect, userController.getUserById);
+router.put('/:id', protect, userController.modifyUser);
 router.delete('/:id', protect, userController.deleteUser);
 
 module.exports = router;
