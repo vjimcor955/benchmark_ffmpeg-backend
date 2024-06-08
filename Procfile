@@ -1,1 +1,1 @@
-web: docker-compose up
+web: node app.js
