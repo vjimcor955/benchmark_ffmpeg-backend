@@ -26,7 +26,7 @@ const protect = async (req, res, next) => {
 // Routes
 const router = express.Router();
 
-router.post('/metrics', protect, resultVideoController.processMetrics);
+router.post('/video', protect, resultVideoController.uploadResult);
 
 router.get('/', protect, resultVideoController.getAllResultVideos);
 router.get('/:id', protect, resultVideoController.getResultVideoById);
