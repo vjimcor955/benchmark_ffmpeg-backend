@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', mainRouter); // Use the main router
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 sequelize.authenticate()
   .then(() => {
     console.log('Connection to the database has been established successfully.');
