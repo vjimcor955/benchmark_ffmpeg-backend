@@ -2,18 +2,23 @@
 
 const { Sequelize } = require('sequelize');
 
-const databaseUrl = process.env.DATABASE_URL || '';
-
-const sequelize = new Sequelize(databaseUrl, {
+// Use the DATABASE_URL if available (Heroku style), otherwise use individual environment variables
+const connectionString = process.env.DATABASE_URL || {
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
   dialect: 'mysql',
-  protocol: 'mysql',
+  port: 3306,
+};
+
+const sequelize = new Sequelize(connectionString, {
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false // This is important if you are connecting to a Heroku database
-    }
+      rejectUnauthorized: false,
+    },
   },
-  logging: false // Disable logging if not needed
 });
 
 module.exports = sequelize;
